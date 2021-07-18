@@ -1,0 +1,71 @@
+containers:
+  build-env:
+    image: node:14.3.0
+    volumes:
+      - local: .
+        container: /code
+        options: cached
+      - type: cache
+        name: node_modules
+        container: /code/node_modules
+    working_directory: /code
+
+  # docker container defination for postgres DB
+  db:
+    image: postgres:alpine
+    environment:
+      POSTGRES_PASSWORD: password
+      POSTGRES_USER: app
+      POSTGRES_DB: db
+
+tasks:
+  start-db:
+    description: start database
+    run:
+      container: db
+
+  migration-up:
+    description: Apply migration scripts
+    run:
+      container: build-env
+      command: npm run migration-up
+    dependencies:
+      - db
+
+  # jest task
+  test-watch:
+    description: Run unit testcase
+    run:
+      container: build-env
+      environment:
+        POSTGRES_URI: postgres://app:password@db/db
+        PORT: 8080
+      command: npm run test:watch
+    dependencies:
+      - db
+
+  hello-world:
+    description: Say hello to everyone
+    run:
+      container: build-env
+      command: echo "Hello world!"
+
+  # install dependency
+  setup:
+    description: Install dependencies needed to build and run the application
+    run:
+      container: build-env
+      command: npm install
+  # run application after setup task
+  run:
+    description: Run the application
+    run:
+      container: build-env
+      environment:
+        POSTGRES_URI: postgres://app:password@db/db
+        PORT: 8080
+      command: npm run start
+      ports:
+        - 5000:8080
+    dependencies:
+      - db
