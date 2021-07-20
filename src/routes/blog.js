@@ -1,3 +1,5 @@
+const postService = require('../service/post.service');
+
 const opts = {
   schema: {
     response: {
@@ -20,10 +22,9 @@ const opts = {
 };
 
 const postRoutes = async (fastify) => {
-  fastify.get('/', opts, async () => {
-    const blogs = await fastify.db.query('select * from blog');
-    return blogs;
-  });
+  const { getAllPost } = postService(fastify);
+
+  fastify.get('/', opts, getAllPost);
 
   fastify.post('/', async (request, reply) => {
     fastify.log.info(`request with body ${request}`);
