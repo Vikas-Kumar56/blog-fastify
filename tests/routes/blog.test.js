@@ -2,11 +2,11 @@ const build = require('../../src/app');
 
 let app;
 describe('Post routes', () => {
-  beforeEach(() => {
+  beforeAll(() => {
     app = build();
   });
 
-  afterEach(() => {
+  afterAll(() => {
     // At the end of your tests it is highly recommended to call `.close()`
     // to ensure that all connections to external services get closed.
     app.close();

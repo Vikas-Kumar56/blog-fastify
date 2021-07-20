@@ -1,0 +1,1 @@
+docker start mylocalpg || docker run -d --name mylocalpg -p 5432:5432 -e POSTGRES_USER=app -e POSTGRES_PASSWORD=password -e POSTGRES_DB=db postgres:alpine 
