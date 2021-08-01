@@ -2,6 +2,7 @@ const DbMigrate = require('db-migrate');
 
 const runMigration = () =>
   new Promise((resolve, reject) => {
+    console.log(JSON.stringify(process.env));
     const dbMigrate = DbMigrate.getInstance(true);
     dbMigrate.silence(true);
 
