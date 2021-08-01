@@ -25,3 +25,14 @@ jobs:
           node-version: ${{ matrix.node-version }}
       - run: ./batect setup
       - run: ./batect test-ci
+
+  deploy: ## deploy to heroku
+    needs: build
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - uses: akhileshns/heroku-deploy@v3.12.12
+        with:
+          heroku_api_key: ${{secrets.HEROKU_TEST_TOKEN}}
+          heroku_app_name: 'fastify-nodejs'
+          # heroku_email: "micah@afitnerd.com"
