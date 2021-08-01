@@ -1,6 +1,5 @@
 {
   "driver": "pg",
-  "heroku": { "ENV": "DATABASE_URL" },
   "dev": {
     "ENV": "POSTGRES_URI"
   },
