@@ -1,8 +1,13 @@
 {
   "driver": "pg",
-  "dev": { "ENV": "POSTGRES_URI" },
-  "sql-file": true,
-  "ssl": {
-    "rejectUnauthorized": false
-  }
+  "dev": {
+    "ENV": "POSTGRES_URI",
+    "addIfNotExists": {
+      "sslmode": "require"
+    },
+    "overwrite": {
+      "native": true
+    }
+  },
+  "sql-file": true
 }
