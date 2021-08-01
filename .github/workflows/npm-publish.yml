@@ -26,12 +26,25 @@ jobs:
       - run: ./batect setup
       - run: ./batect test-ci
 
-  deploy: ## deploy to heroku
-    needs: build
-    runs-on: ubuntu-latest
+jobs:
+  deploy:
+    runs-on: "ubuntu-latest"
     steps:
       - uses: actions/checkout@v2
-      - uses: akhileshns/heroku-deploy@v3.12.12
+
+      - name: "Deploy the web dyno"
+        uses: "akhileshns/heroku-deploy@v3.12.12"
         with:
-          heroku_api_key: ${{secrets.HEROKU_TEST_TOKEN}}
-          heroku_app_name: 'fastify-nodejs'
+          docker_heroku_process_type: web
+          heroku_api_key: ${{ secrets.HEROKU_TEST_TOKEN }}
+          heroku_app_name: fastify-nodejs
+          justlogin: true
+
+      - name: "Login to heroku registry"
+        run: heroku container:login
+
+      - name: "Build and push to heroku registry"
+        run: heroku container:push web --app fastify-nodejs
+
+      - name: "Releases the container"
+        run: heroku container:release web --app fastify-nodejs
