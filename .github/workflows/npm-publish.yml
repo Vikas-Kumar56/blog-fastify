@@ -38,7 +38,7 @@ jobs:
           heroku_api_key: ${{ secrets.HEROKU_TEST_TOKEN }}
           heroku_app_name: 'fastify-nodejs'
           justlogin: true
-      - name: 'login to heroku'
-        run: heroku login
+      - name: 'add remote git'
+        run: git remote add heroku https://git.heroku.com/fastify-nodejs.git
       - name: 'push to heroku'
         run: git push heroku master
