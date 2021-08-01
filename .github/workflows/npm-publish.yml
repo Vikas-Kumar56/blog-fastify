@@ -35,16 +35,9 @@ jobs:
       - name: 'Deploy the web dyno'
         uses: 'akhileshns/heroku-deploy@v3.12.12'
         with:
-          docker_heroku_process_type: web
           heroku_api_key: ${{ secrets.HEROKU_TEST_TOKEN }}
           heroku_app_name: fastify-nodejs
           justlogin: true
 
-      - name: 'Login to heroku registry'
-        run: heroku container:login
-
-      - name: 'Build and push to heroku registry'
-        run: heroku container:push web --app fastify-nodejs
-
-      - name: 'Releases the container'
-        run: heroku container:release web --app fastify-nodejs
+      - name: 'push to heroku'
+        run: git push heroku master
