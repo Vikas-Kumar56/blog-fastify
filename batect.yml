@@ -32,6 +32,17 @@ tasks:
     dependencies:
       - db
 
+  test-ci:
+    description: Run unit testcase
+    run:
+      container: build-env
+      environment:
+        POSTGRES_URI: postgres://app:password@db/db
+        PORT: 8080
+      command: npm run test
+    dependencies:
+      - db
+
   # jest task
   test-watch:
     description: Run unit testcase
