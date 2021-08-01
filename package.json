@@ -24,6 +24,9 @@
     "pg-promise": "^10.10.2",
     "pino-pretty": "^5.1.1"
   },
+  "peerDependencies": {
+    "pg": "7.4.3"
+  },
   "devDependencies": {
     "eslint": "^7.30.0",
     "eslint-config-airbnb-base": "^14.2.1",
