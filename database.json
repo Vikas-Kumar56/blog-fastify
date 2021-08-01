@@ -1,5 +1,13 @@
 {
-    "driver": "pg",
-    "dev": { "ENV": "POSTGRES_URI" },
-    "sql-file": true
+  "driver": "pg",
+  "dev": { "ENV": "POSTGRES_URI" },
+  "sql-file": true,
+  "staging": {
+    "overwrite": {
+      "driver": "pg",
+      "ssl": {
+        "rejectUnauthorized": false
+      }
+    }
+  }
 }
