@@ -17,7 +17,7 @@ const build = (opts = {}) => {
   app.register(blogRoutes, { prefix: '/api/v1/blogs' });
 
   app.get('/', async (request, reply) => {
-    reply.send({ hello: 'new world' });
+    reply.send({ hello: 'the world' });
   });
 
   return app;
