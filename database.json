@@ -1,6 +1,9 @@
 {
   "driver": "pg",
   "dev": {
+    "ENV": "POSTGRES_URI"
+  },
+  "production": {
     "ENV": "POSTGRES_URI",
     "addIfNotExists": {
       "sslmode": "require"
