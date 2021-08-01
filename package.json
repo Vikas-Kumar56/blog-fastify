@@ -10,7 +10,7 @@
     "test:watch": "jest --watchAll --runInBand --detectOpenHandles",
     "lint": "eslint '**/*.js' --fix --ignore-pattern node_modules/",
     "format": "prettier --write '**/*.js'",
-    "migration-up": "./node_modules/.bin/db-migrate up",
+    "migration-up": "./node_modules/.bin/db-migrate up --config database.json",
     "postinstall": "npm run migration-up --env staging"
   },
   "author": "",
