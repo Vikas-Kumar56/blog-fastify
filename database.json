@@ -1,16 +1,8 @@
 {
   "driver": "pg",
+  "heroku": { "ENV": "DATABASE_URL" },
   "dev": {
     "ENV": "POSTGRES_URI"
-  },
-  "production": {
-    "ENV": "POSTGRES_URI",
-    "addIfNotExists": {
-      "sslmode": "require"
-    },
-    "overwrite": {
-      "native": true
-    }
   },
   "sql-file": true
 }
