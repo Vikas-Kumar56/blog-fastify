@@ -15,7 +15,7 @@ jobs:
 
     strategy:
       matrix:
-        node-version: [10.x, 12.x, 14.x, 15.x]
+        node-version: [14.x, 15.x]
 
     steps:
       - uses: actions/checkout@v2
@@ -38,6 +38,7 @@ jobs:
           heroku_api_key: ${{ secrets.HEROKU_TEST_TOKEN }}
           heroku_app_name: 'fastify-nodejs'
           justlogin: true
-
+      - name: 'login to heroku'
+        run: heroku login
       - name: 'push to heroku'
         run: git push heroku master
