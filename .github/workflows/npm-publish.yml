@@ -35,4 +35,5 @@ jobs:
         with:
           heroku_api_key: ${{secrets.HEROKU_TEST_TOKEN}}
           heroku_app_name: 'fastify-nodejs'
-          remote_branch: 'main'
+          branch: 'main'
+          justlogin: true
