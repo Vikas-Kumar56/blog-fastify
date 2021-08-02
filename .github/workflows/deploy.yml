@@ -33,15 +33,11 @@ jobs:
     runs-on: 'ubuntu-latest'
     steps:
       - uses: actions/checkout@v2
-      - name: Login to Heroku
-        env:
-          HEROKU_API_KEY: ${{ secrets.HEROKU_TEST_TOKEN }}
-        run: heroku auth:login
 
       - name: Login to Heroku Container registry
         env:
           HEROKU_API_KEY: ${{ secrets.HEROKU_TEST_TOKEN }}
-        run: heroku container:login
+        run: HEROKU_API_KEY=${{ secrets.HEROKU_TEST_TOKEN }} heroku container:login
 
       - name: Build docker image and push to heroku registry
         env:
