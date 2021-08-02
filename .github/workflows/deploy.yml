@@ -28,15 +28,15 @@ jobs:
 
       - name: Login to Heroku Container registry
         env:
-          HEROKU_API_KEY: ${{ secrets.HEROKU_TEST_TOKEN }}
+          HEROKU_API_KEY: ${{ secrets.HEROKU_API_KEY }}
         run: sudo heroku container:login
 
       - name: Build docker image and push to heroku registry
         env:
-          HEROKU_API_KEY: ${{ secrets.HEROKU_TEST_TOKEN }}
+          HEROKU_API_KEY: ${{ secrets.HEROKU_API_KEY }}
         run: heroku container:push -a fastify-nodejs web
 
       - name: Run docker image
         env:
-          HEROKU_API_KEY: ${{ secrets.HEROKU_TEST_TOKEN }}
+          HEROKU_API_KEY: ${{ secrets.HEROKU_API_KEY }}
         run: heroku container:release -a fastify-nodejs web
