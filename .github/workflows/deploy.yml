@@ -32,7 +32,12 @@ jobs:
     needs: build
     runs-on: 'ubuntu-latest'
     steps:
-      - uses: actions/checkout@v1
+      - uses: actions/checkout@v2
+      - name: Login to Heroku
+        env:
+          HEROKU_API_KEY: ${{ secrets.HEROKU_TEST_TOKEN }}
+        run: heroku auth:login
+
       - name: Login to Heroku Container registry
         env:
           HEROKU_API_KEY: ${{ secrets.HEROKU_TEST_TOKEN }}
