@@ -1,0 +1,11 @@
+heroku login
+
+command: heroku authorizations:create
+result:
+        Creating OAuth Authorization... done
+        Client:      <none>
+        ID:          uuid
+        Description: Long-lived user authorization
+        Scope:       global
+        Token:       uuid
+        Updated at:  date
